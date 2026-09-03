@@ -109,7 +109,7 @@
     .form-header .subtitle {
       font-size: 1.1rem;
       font-weight: 600;
-      color: #fef08a; /* Warna kuning soft agar mencolok manis */
+      color: #fef08a;
       margin-bottom: 10px;
       letter-spacing: 0.05em;
       text-transform: uppercase;
@@ -139,7 +139,8 @@
     }
     .form-group input[type="text"],
     .form-group input[type="date"],
-    .form-group textarea {
+    .form-group textarea,
+    .form-group select {
       width: 100%;
       padding: 10px 14px;
       border: 1.5px solid #fed7aa;
@@ -148,9 +149,11 @@
       outline: none;
       transition: all 0.2s ease;
       background-color: #fffaf5;
+      color: #333;
     }
     .form-group input:focus,
-    .form-group textarea:focus {
+    .form-group textarea:focus,
+    .form-group select:focus {
       border-color: #f97316;
       background-color: #ffffff;
       box-shadow: 0 0 0 3.5px rgba(249, 115, 22, 0.18);
@@ -164,7 +167,7 @@
       flex: 1;
     }
 
-    /* Radio Button Style - Orange Theme */
+    /* Radio Button Style */
     .radio-group {
       display: flex;
       flex-wrap: wrap;
@@ -194,7 +197,7 @@
       cursor: pointer;
     }
 
-    /* Tombol Submit Orange Meriah */
+    /* Tombol Submit Orange */
     button[type="submit"] {
       width: 100%;
       padding: 14px;
@@ -250,7 +253,6 @@
 </head>
 <body>
 
-  <!-- Background Shapes Dinamis -->
   <div class="bg-shapes">
     <div class="shape shape-1"></div>
     <div class="shape shape-2"></div>
@@ -259,7 +261,6 @@
   </div>
 
   <div class="form-card">
-    <!-- Banner Header -->
     <div class="form-header">
       <h2>Form Data Pegawai</h2>
       <div class="subtitle">BIAS Yaumi Fatimah</div>
@@ -300,7 +301,6 @@
           <textarea id="alamat" name="alamat" rows="3" placeholder="Masukkan alamat tempat tinggal" required></textarea>
         </div>
 
-        <!-- Penempatan dengan Radio Button -->
         <div class="form-group">
           <label class="main-label">Penempatan</label>
           <div class="radio-group">
@@ -325,11 +325,27 @@
         <div class="form-row">
           <div class="form-group">
             <label class="main-label" for="unit">Unit</label>
-            <input type="text" id="unit" name="unit" placeholder="Unit kerja" required>
+            <select id="unit" name="unit" required>
+              <option value="" disabled selected>Pilih Unit...</option>
+              <option value="SMA">SMA</option>
+              <option value="SMP">SMP</option>
+              <option value="SD">SD</option>
+              <option value="TK">TK</option>
+              <option value="PG">PG</option>
+              <option value="Batita">Batita</option>
+              <option value="Daycare">Daycare</option>
+            </select>
           </div>
+
           <div class="form-group">
             <label class="main-label" for="jabatan">Jabatan</label>
-            <input type="text" id="jabatan" name="jabatan" placeholder="Jabatan saat ini" required>
+            <select id="jabatan" name="jabatan" required>
+              <option value="" disabled selected>Pilih Jabatan...</option>
+              <option value="Kepala Sekolah">Kepala Sekolah</option>
+              <option value="Wali Kelas">Wali Kelas</option>
+              <option value="Pendamping">Pendamping</option>
+              <option value="Umi">Umi</option>
+            </select>
           </div>
         </div>
 
