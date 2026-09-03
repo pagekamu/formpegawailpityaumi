@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Data Pegawai - BIAS Yaumi Fatimah</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: #fff7ed;
+      color: #333;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Floating Shapes Background */
+    .bg-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(251, 146, 60, 0.25), rgba(249, 115, 22, 0.15));
+      animation: float 18s infinite ease-in-out;
+    }
+    .shape-1 {
+      width: 280px;
+      height: 280px;
+      top: -60px;
+      left: -60px;
+      animation-delay: 0s;
+    }
+    .shape-2 {
+      width: 350px;
+      height: 350px;
+      bottom: -100px;
+      right: -80px;
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.25), rgba(245, 158, 11, 0.15));
+      animation-delay: -5s;
+    }
+    .shape-3 {
+      width: 150px;
+      height: 150px;
+      top: 40%;
+      right: 10%;
+      animation-delay: -9s;
+    }
+    .shape-4 {
+      width: 200px;
+      height: 200px;
+      bottom: 15%;
+      left: 5%;
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(234, 88, 12, 0.15));
+      animation-delay: -13s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+      }
+      50% {
+        transform: translateY(-30px) rotate(15deg) scale(1.05);
+      }
+    }
+
+    .form-card {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(234, 88, 12, 0.15);
+      width: 100%;
+      max-width: 600px;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      z-index: 1;
+    }
+    
+    /* Header Banner Warna-Warni */
+    .form-header {
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #d97706 100%);
+      padding: 32px 24px;
+      text-align: center;
+      color: #ffffff;
+      position: relative;
+    }
+    .form-header h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+    .form-header .subtitle {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fef08a; /* Warna kuning soft agar mencolok manis */
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .form-header p {
+      font-size: 0.9rem;
+      color: #ffedd5;
+      line-height: 1.4;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* Container untuk field isi form */
+    .form-body {
+      padding: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label.main-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #431407;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="date"],
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid #fed7aa;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.2s ease;
+      background-color: #fffaf5;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #f97316;
+      background-color: #ffffff;
+      box-shadow: 0 0 0 3.5px rgba(249, 115, 22, 0.18);
+    }
+    
+    .form-row {
+      display: flex;
+      gap: 14px;
+    }
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    /* Radio Button Style - Orange Theme */
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff7ed;
+      border: 1.5px solid #ffedd5;
+      padding: 8px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #7c2d12;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .radio-option:hover {
+      background: #ffedd5;
+      border-color: #fdba74;
+    }
+    .radio-option input[type="radio"] {
+      accent-color: #ea580c;
+      cursor: pointer;
+    }
+
+    /* Tombol Submit Orange Meriah */
+    button[type="submit"] {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3);
+      transition: all 0.2s ease;
+      margin-top: 10px;
+    }
+    button[type="submit"]:hover {
+      background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+      box-shadow: 0 6px 18px rgba(234, 88, 12, 0.4);
+      transform: translateY(-1px);
+    }
+    button[type="submit"]:disabled {
+      background: #fdba74;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    #status-msg {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      text-align: center;
+      display: none;
+    }
+    .msg-success {
+      background-color: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+    .msg-error {
+      background-color: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    @media (max-width: 480px) {
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Shapes Dinamis -->
+  <div class="bg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+  </div>
+
+  <div class="form-card">
+    <!-- Banner Header -->
+    <div class="form-header">
+      <h2>Form Data Pegawai</h2>
+      <div class="subtitle">BIAS Yaumi Fatimah</div>
+      <p>Silakan isi data di bawah ini dengan lengkap dan benar untuk keperluan administrasi unit kerja.</p>
+    </div>
+
+    <div class="form-body">
+      <form id="dataForm">
+        <div class="form-group">
+          <label class="main-label" for="nama">Nama Lengkap</label>
+          <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="main-label" for="pendidikan">Pendidikan Terakhir</label>
+            <input type="text" id="pendidikan" name="pendidikan" placeholder="Contoh: S1 / SMA / D3" required>
+          </div>
+          <div class="form-group">
+            <label class="main-label" for="jurusan">Jurusan</label>
+            <input type="text" id="jurusan" name="jurusan" placeholder="Contoh: Teknik Informatika" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="main-label" for="gelar">Gelar</label>
+            <input type="text" id="gelar" name="gelar" placeholder="Contoh: S.Pd / M.Hum (jika ada)">
+          </div>
+          <div class="form-group">
+            <label class="main-label" for="tanggal_lahir">Tanggal Lahir</label>
+            <input type="date" id="tanggal_lahir" name="tanggal_lahir" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="main-label" for="alamat">Alamat Lengkap</label>
+          <textarea id="alamat" name="alamat" rows="3" placeholder="Masukkan alamat tempat tinggal" required></textarea>
+        </div>
+
+        <!-- Penempatan dengan Radio Button -->
+        <div class="form-group">
+          <label class="main-label">Penempatan</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="penempatan" value="Pati" required> Pati
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="penempatan" value="Kudus"> Kudus
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="penempatan" value="Juwana"> Juwana
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="penempatan" value="Jepara"> Jepara
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="penempatan" value="Ittihad"> Ittihad
+            </label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="main-label" for="unit">Unit</label>
+            <input type="text" id="unit" name="unit" placeholder="Unit kerja" required>
+          </div>
+          <div class="form-group">
+            <label class="main-label" for="jabatan">Jabatan</label>
+            <input type="text" id="jabatan" name="jabatan" placeholder="Jabatan saat ini" required>
+          </div>
+        </div>
+
+        <button type="submit" id="submitBtn">Kirim Data</button>
+        <div id="status-msg"></div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // MASUKKAN URL GOOGLE APPS SCRIPT DI SINI
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwMh2KPPZeDPVY4E3jK9uqpWIgZmRG3yBPAF5soO7fjYpcI29weARajRe7T2Hglv2Qi/exec";
+
+    const form = document.getElementById('dataForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const statusMsg = document.getElementById('status-msg');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Mengirim...';
+      statusMsg.style.display = 'none';
+
+      const penempatanSelected = document.querySelector('input[name="penempatan"]:checked');
+
+      const formData = {
+        nama: form.nama.value,
+        pendidikan: form.pendidikan.value,
+        jurusan: form.jurusan.value,
+        gelar: form.gelar.value,
+        tanggal_lahir: form.tanggal_lahir.value,
+        alamat: form.alamat.value,
+        penempatan: penempatanSelected ? penempatanSelected.value : '',
+        unit: form.unit.value,
+        jabatan: form.jabatan.value
+      };
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(() => {
+        statusMsg.className = 'msg-success';
+        statusMsg.innerText = 'Data berhasil dikirim!';
+        statusMsg.style.display = 'block';
+        form.reset();
+      })
+      .catch(error => {
+        statusMsg.className = 'msg-error';
+        statusMsg.innerText = 'Gagal mengirim data. Silakan coba lagi.';
+        statusMsg.style.display = 'block';
+        console.error('Error:', error);
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerText = 'Kirim Data';
+      });
+    });
+  </script>
+
+</body>
+</html>
